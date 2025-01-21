@@ -6,7 +6,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: 'https://eventify-6msiwn79f-sumit-sagars-projects-3b03c4db.vercel.app', credentials: true }));
 app.use(express.json());
 app.use(session({ secret: 'secretKey', resave: false, saveUninitialized: false }));
 
@@ -33,7 +33,8 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => res.redirect('http://localhost:3000/dashboard') // Redirect after successful login
+  // (req, res) => res.redirect('http://localhost:3000/dashboard') // 
+  (req, res) => res.redirect('https://eventify-6msiwn79f-sumit-sagars-projects-3b03c4db.vercel.app/dashboard') 
 );
 
 app.get('/auth/logout', (req, res) => {
@@ -45,6 +46,6 @@ app.get('/auth/logout', (req, res) => {
 
 app.get('/auth/status', (req, res) => res.send(req.user || null));
 
-// Start server
+
 const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
